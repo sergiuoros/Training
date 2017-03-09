@@ -1,53 +1,57 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Training.Models;
 using WebApplication1;
 
 namespace Training.Repository
 {
-    public class RepositoryUser : IDisposable
+    public class RepositoryUser : IRepository<User>
     {
-        private TrainingContext trainingContext;
+        private TrainingContext TrainingContext;
 
         public RepositoryUser()
         {
-            trainingContext = new TrainingContext();
+            
         }
 
-        public void Dispose()
+        public RepositoryUser(TrainingContext TrainingContext)
         {
-            if (trainingContext != null)
-            {
-                trainingContext.Dispose();
-            }
+            this.TrainingContext = TrainingContext;
         }
 
-        //public bool CheckUser(string username, string password)
-        //{
-        //    string connetionString = null;
-        //    SqlConnection con;
-        //    connetionString = "Data Source=CJ1434-LAP\\SQLEXPRESS;Initial Catalog=Training;Integrated Security=True";
-        //    con = new SqlConnection(connetionString);
+        public IEnumerable<User> GetAll()
+        {
+            return TrainingContext.Users;
+        }
 
-        //    SqlCommand cmd = new SqlCommand("Select * from User where username= @username and @password=password", con);
-        //    cmd.Parameters.AddWithValue("@Username", username);
-        //    cmd.Parameters.AddWithValue("@password", password);
-        //    con.Open();
-        //    var result = cmd.ExecuteScalar();
-        //    if (result != null)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
+        public void Add(User entity)
+        {
+            TrainingContext.Users.Add(entity);
+            TrainingContext.SaveChanges();
+        }
 
-        //}
+        public void Delete(User entity)
+        {
+            TrainingContext.Users.Remove(entity);
+            TrainingContext.SaveChanges();
+        }
+
+        public void Update(User entity)
+        {
+            TrainingContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            TrainingContext.SaveChanges();
+        }
+
+        public User FindById(int Id)
+        {
+            return TrainingContext.Users.FirstOrDefault(u => u.Id.Equals(Id));
+        }
+
 
         public User GetUser(string username, string password)
         {
-            return trainingContext.Users.FirstOrDefault(u => u.username.Equals(username) && u.password.Equals(password));
+            return TrainingContext.Users.FirstOrDefault(u => u.Username.Equals(username) && u.Password.Equals(password));
         }
     }
 }

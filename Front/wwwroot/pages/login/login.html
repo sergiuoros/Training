@@ -1,0 +1,19 @@
+﻿<div ng-controller="LoginController as simpleCtrl">
+    <h2>Login</h2>
+    <form name="form" ng-submit="simpleCtrl.goLogin()" novalidate>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" ng-value="bla" class="form-control"  ng-model="simpleCtrl.username" required />
+            <span ng-show="form.username.$touched && form.username.$error.required" class="help-block">Username is required</span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" ng-model="simpleCtrl.password" required />
+            <span ng-show="form.password.$touched && form.password.$error.required" class="help-block">Password is required</span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Login</button>
+        </div>
+        
+    </form>
+</div>

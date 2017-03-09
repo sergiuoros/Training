@@ -1,0 +1,35 @@
+﻿<div id="PopupAdd">
+    <div>
+        <h4>Add Event</h4>
+    </div>
+    <form class="container" name="form" novalidate>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" ng-model="name" required />
+            <span ng-show="form.name.$touched && form.name.$error.required" class="help-block">Event name is required</span>
+        </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" class="form-control" ng-model="date" required />
+            <span ng-show="form.date.$touched && form.date.$error.required" class="help-block">Event date is required</span>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" name="price" id="price" class="form-control" ng-model="price" required />
+            <span ng-show="form.price.$touched && form.price.$error.required" class="help-block">Event price is required</span>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" name="location" id="location" class="form-control" ng-model="location" required />
+            <span ng-show="form.location.$touched && form.location.$error.required" class="help-block">Event location is required</span>
+        </div>
+        <div class="form-actions">
+             <button type="submit" ng-disabled="form.$invalid" ng-click="addEvent()" class="btn btn-primary">Add</button>
+        </div>
+        <div class="dialog-contents col-md-4 text-right">
+            <input type="button" class="btn btn-primary pull-right"  value="Close" ng-click="Close()" />
+        </div>
+        
+    </form>
+    
+</div>

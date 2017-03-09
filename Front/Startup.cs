@@ -83,7 +83,7 @@ namespace Front
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Login}/{action=Log}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
             app.UseCors("CICors");
 

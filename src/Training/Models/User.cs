@@ -9,8 +9,8 @@ namespace Training.Models
     public class User
     {   
         [Key]
-        public int idUser { set; get; }
-        public string username { set; get; }
-        public string password { set; get; }
+        public int Id { set; get; }
+        public string Username { set; get; }
+        public string Password { set; get; }
     }
 }

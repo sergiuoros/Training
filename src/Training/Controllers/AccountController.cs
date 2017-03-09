@@ -7,6 +7,7 @@ using Training.Repository;
 using Training.Models;
 using Training.Dtos;
 using System.Net;
+using WebApplication1;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,7 +16,16 @@ namespace Training.Controllers
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
-        
+
+        private TrainingContext trainingContext;
+        private RepositoryUser repo;
+
+        public AccountController()
+        {
+            trainingContext = new TrainingContext();
+            repo = new RepositoryUser(trainingContext); 
+        }
+
         // GET: api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -35,16 +45,14 @@ namespace Training.Controllers
         public ActionResult Login([FromBody]UserCredentialsDto value)
         {
             try
-            {
-                using (RepositoryUser repo = new RepositoryUser())
-                {
+            {       
                     if(repo.GetUser(value.Username, value.Password) != default(User))
                     {
                         return Ok();
                     }
 
                     return Unauthorized();
-                }
+                
             }catch(Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
@@ -62,5 +70,16 @@ namespace Training.Controllers
         public void Delete(int id)
         {
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (trainingContext != null)
+            {
+                trainingContext.Dispose();
+            }
+        }
+
+
     }
 }

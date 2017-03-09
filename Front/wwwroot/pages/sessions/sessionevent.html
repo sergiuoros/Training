@@ -1,0 +1,17 @@
+﻿<div ng-controller="SessionController as sessionCtrl">
+    <h2>Sessions</h2>
+
+    <div class="row">
+        <div class="col-md-6"  ng-repeat="s in sessions">
+            <div class="well hoverwell thumbnail">
+                <div style="font-size: 25px">{{s.name}}</div>
+                <div style="font-size: 20px">Duration: {{s.duration}}</div>
+                <div style="font-size: 20px">Difficulty: {{s.difficulty}}</div>
+                <div style="font-size: 20px">Description: {{s.description}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-info btn-lg" ng-click="sessionCtrl.OpenPopup()">Add Session</button>
+    </div>
+</div>

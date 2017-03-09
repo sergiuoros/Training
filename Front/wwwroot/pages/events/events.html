@@ -1,0 +1,21 @@
+﻿<div ng-controller="EventController as eventCtrl">
+    <h2>Events</h2>
+    
+        <div class="row" >
+        
+            <div class="col-md-6"  ng-repeat="e in events">
+                <div class="well hoverwell thumbnail"  >
+                    <input type="button" class="btn btn-default pull-right" value="Edit" ui-sref="eventsedit({id: e.idEvent})" />
+                    <input type="button" class="btn btn-default pull-right" value="View Sessions" ng-click="openSession(e)" />
+                    <div style="font-size: 25px" >{{e.name}}</div>
+                    <div style="font-size: 20px" ng-bind="e.date | date:'MM/dd/yyyy'"></div>
+                    <div style="font-size: 20px">Price: {{e.price}}$</div>
+                    <div style="font-size: 20px">Location: {{e.location}}</div>
+                </div>
+            </div>
+        
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-info btn-lg" ng-click="eventCtrl.clickToOpen()" >Add Event</button>
+        </div>
+</div>

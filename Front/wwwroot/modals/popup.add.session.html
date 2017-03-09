@@ -1,0 +1,35 @@
+﻿<div>
+    <div>
+        <h4>Add Session</h4>
+    </div>
+    <form class="container" name="form" novalidate>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" ng-model="name" required />
+            <span ng-show="form.name.$touched && form.name.$error.required" class="help-block">Session name is required</span>
+        </div>
+        <div class="form-group">
+            <label for="duration">Duration</label>
+            <input type="text" name="duration" id="duration" class="form-control" ng-model="duration" required />
+            <span ng-show="form.duration.$touched && form.duration.$error.required" class="help-block">Session duration is required</span>
+        </div>
+        <div class="form-group">
+            <label for="difficulty">Difficulty</label>
+            <input type="text" name="difficulty" id="difficulty" class="form-control" ng-model="difficulty" required />
+            <span ng-show="form.difficulty.$touched && form.difficulty.$error.required" class="help-block">Session difficulty is required</span>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description" class="form-control" ng-model="description" required />
+            <span ng-show="form.description.$touched && form.description.$error.required" class="help-block">Session description is required</span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid" ng-click="addSession()" class="btn btn-primary">Add</button>
+        </div>
+        <div class="dialog-contents col-md-4 text-right">
+            <input type="button" class="btn btn-primary pull-right" value="Close" ng-click="Close()" />
+        </div>
+
+    </form>
+
+</div>
